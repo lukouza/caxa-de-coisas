@@ -1,14 +1,10 @@
 <div>
- <h1>Posts</h1>
- <a href="{{ route('posts.create') }}">Novo post</a>
- @foreach ($posts as $post)
- <h2>#{{ $post['id'] }} {{ $post['title'] }} - 
- <a href="{{ route('posts.edit', ['post' => $post['id']]) }}">editar</a>
- <form action="{{ route('posts.destroy', ['post' => $post['id']]) }}" method="post">
+ <h1>Novo Post</h1>
+ <form action="{{ route('posts.store') }}" method="post">
  @csrf
- @method('delete')
- <input type="submit" value="excluir">
+ <input type="text" name="title" id="title" placeholder="Título"/><br/><br/>
+ <textarea name="content" id="content" 
+placeholder="Conteúdo"></textarea><br/><br/>
+ <button type="submit">Criar Post</button>
  </form>
- </h2>
- @endforeach
 </div>
