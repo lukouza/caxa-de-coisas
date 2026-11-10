@@ -1,2 +1,14 @@
-rm vite.config.js
-printf "import { defineConfig } from 'vite';\nimport laravel from 'laravel-vite-plugin';\n\nexport default defineConfig({\n    plugins: [\n        laravel({\n            input: ['resources/css/app.css', 'resources/js/app.js'],\n            refresh: true,\n        }),\n    ],\n});\n" > vite.config.js
+<div>
+ <h1>Posts</h1>
+ <a href="{{ route('posts.create') }}">Novo post</a>
+ @foreach ($posts as $post)
+ <h2>#{{ $post['id'] }} {{ $post['title'] }} - 
+ <a href="{{ route('posts.edit', ['post' => $post['id']]) }}">editar</a>
+ <form action="{{ route('posts.destroy', ['post' => $post['id']]) }}" method="post">
+ @csrf
+ @method('delete')
+ <input type="submit" value="excluir">
+ </form>
+ </h2>
+ @endforeach
+</div>
